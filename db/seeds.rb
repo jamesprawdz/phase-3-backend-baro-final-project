@@ -1,3 +1,8 @@
+Bar.destroy_all
+User.destroy_all
+Review.destroy_all
+FavoriteBar.destroy_all
+
 puts "🌱 Seeding bars..."
 whitehorse = Bar.create(name: "White Horse Tavern", category: "Tavern", price: "$", closing_time: "0200", location: "25 Bridge St, New York, NY 10004")
 tavernreade = Bar.create(name: "Tavern On Reade", category: "Tavern", price: "$$", closing_time: "0200", location: "59 Reade St, New York, NY 10007")

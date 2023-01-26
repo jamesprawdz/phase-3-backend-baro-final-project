@@ -1,10 +1,11 @@
+require 'pry'
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
   # fetch for all bars on "home page"
   get '/bars' do
     bars = Bar.all
-    bars.to_json(only: [:name, :category, :price], include: [:reviews])
+    bars.to_json(only: [:id, :name, :category, :price])
   end
 
 #  get for each individual bar in bar info
@@ -20,7 +21,7 @@ class ApplicationController < Sinatra::Base
   
   get '/reviews/:id' do
     review = Review.find(params[:id])
-    review.to_json(only: [:star_rating, :content])
+    review.to_json(only: [:star_rating, :content], include: {user: {only: [:username]}})
   end
   
   post '/reviews' do
@@ -31,6 +32,15 @@ class ApplicationController < Sinatra::Base
   delete '/reviews/:id' do
     review = Review.find(params[:id])
     review.destroy
+    review.to_json
+  end
+
+  patch '/reviews/:id' do
+    review = Review.find(params[:id])
+    review.update(
+      content: params[:content],
+      star_rating: params[:star_rating]
+    )
     review.to_json
   end
 
