@@ -41,7 +41,7 @@ class ApplicationController < Sinatra::Base
       content: params[:content],
       star_rating: params[:star_rating]
     )
-    review.to_json
+    review.to_json(include: {user: {only: [:username]}})
   end
 
   get '/crawl_list' do
