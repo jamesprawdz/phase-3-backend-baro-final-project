@@ -25,13 +25,7 @@ ActiveRecord::Schema.define(version: 5) do
     t.string "price"
     t.integer "closing_time"
     t.string "location"
-    t.integer "owner_id"
-    t.index ["owner_id"], name: "index_bars_on_owner_id"
-  end
-
-  create_table "favorite_bars", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "bar_id"
+    t.boolean "favorited"
   end
 
   create_table "reviews", force: :cascade do |t|
