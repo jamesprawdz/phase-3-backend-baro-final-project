@@ -4,7 +4,7 @@ class ApplicationController < Sinatra::Base
   # fetch for all bars on "home page"
   get '/bars' do
     bars = Bar.all
-    bars.to_json(only: [:id, :name, :category, :price, :image])
+    bars.to_json(only: [:id, :name, :category, :price, :image, :favorited])
   end
 
 #  get for each individual bar in bar info
@@ -18,22 +18,36 @@ class ApplicationController < Sinatra::Base
     reviews.to_json(include: {user: {only: [:username]}})
   end
   
+  # get to see a specific review
   get '/reviews/:id' do
     review = Review.find(params[:id])
-    review.to_json(only: [:star_rating, :content])
+    review.to_json(only: [:star_rating, :content], include: {user: {only: [:username]}})
   end
   
+  # post to create a review
   post '/reviews' do
     review = Review.create(star_rating:params[:star_rating], content:params[:content], bar_id:params[:bar_id], user_id:params[:user_id])
     review.to_json
   end
+
+  # patch to edit a review
+  patch '/reviews/:id' do
+    review = Review.find(params[:id])
+    review.update(
+      content: params[:content],
+      star_rating: params[:star_rating]
+    )
+    review.to_json(include: {user: {only: [:username]}})
+  end
   
+  # delete to delete a review
   delete '/reviews/:id' do
     review = Review.find(params[:id])
     review.destroy
     review.to_json
   end
 
+  # get to see all bar crawls
   get '/crawl_list' do
     bar_crawl = BarCrawl.all
     bar_crawl.to_json
@@ -59,5 +73,9 @@ get '/users' do
     user.to_json(only: [:username], include: {reviews: {only: [:star_rating, :content]}})
   end
 
+  # patch for favoriting a bar
+  patch '/bars/:id' do
+    Bar.find(params[:id]).update(favorited: params[:favorited]).to_json
+  end
 
 end
