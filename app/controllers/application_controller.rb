@@ -5,7 +5,7 @@ class ApplicationController < Sinatra::Base
   # fetch for all bars on "home page"
   get '/bars' do
     bars = Bar.all
-    bars.to_json(only: [:id, :name, :category, :price])
+    bars.to_json(only: [:id, :name, :category, :price, :image])
   end
 
 #  get for each individual bar in bar info
@@ -25,8 +25,8 @@ class ApplicationController < Sinatra::Base
   end
   
   post '/reviews' do
-    review = Review.create(star_rating:params[:star_rating], content:params[:content], bar_id:params[:bar_id], user_id:params[:user_id])
-    review.to_json
+    review = Review.create(star_rating: params[:star_rating], content: params[:content], user_id: params[:user_id], bar_id: params[:bar_id])
+    review.to_json(only: [:star_rating, :content])
   end
   
   delete '/reviews/:id' do
