@@ -28,11 +28,6 @@ ActiveRecord::Schema.define(version: 5) do
     t.boolean "favorited"
   end
 
-  create_table "favorite_bars", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "bar_id"
-  end
-
   create_table "reviews", force: :cascade do |t|
     t.float "star_rating"
     t.text "content"

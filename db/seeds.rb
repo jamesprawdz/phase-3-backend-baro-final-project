@@ -1,7 +1,7 @@
 Bar.destroy_all
 User.destroy_all
 Review.destroy_all
-FavoriteBar.destroy_all
+
 
 
 
@@ -60,17 +60,17 @@ Review.create(star_rating: 3.5, content: "blah blah bleh", bar_id: broadstone.id
 Review.create(star_rating: 0.0, content: "blah blah bleh", bar_id: tavernreade.id, user_id: dan.id)
 
 puts "🌱 Seeding favorite bars..."
-FavoriteBar.create(user_id: joey.id, bar_id: se.id)
-FavoriteBar.create(user_id: joey.id, bar_id: whitehorse.id)
-FavoriteBar.create(user_id: james.id, bar_id: whitehorse.id)
-FavoriteBar.create(user_id: james.id, bar_id: ready.id)
-FavoriteBar.create(user_id: vero.id, bar_id: ten.id)
-FavoriteBar.create(user_id: adam.id, bar_id: rabbit.id)
-FavoriteBar.create(user_id: adam.id, bar_id: whitehorse.id)
-FavoriteBar.create(user_id: kevin.id, bar_id: clock.id)
-FavoriteBar.create(user_id: dan.id, bar_id: tavernreade.id)
-FavoriteBar.create(user_id: diana.id, bar_id: jeremy.id)
-FavoriteBar.create(user_id: sophia.id, bar_id: rabbit.id)
+# FavoriteBar.create(user_id: joey.id, bar_id: se.id)
+# FavoriteBar.create(user_id: joey.id, bar_id: whitehorse.id)
+# FavoriteBar.create(user_id: james.id, bar_id: whitehorse.id)
+# FavoriteBar.create(user_id: james.id, bar_id: ready.id)
+# FavoriteBar.create(user_id: vero.id, bar_id: ten.id)
+# FavoriteBar.create(user_id: adam.id, bar_id: rabbit.id)
+# FavoriteBar.create(user_id: adam.id, bar_id: whitehorse.id)
+# FavoriteBar.create(user_id: kevin.id, bar_id: clock.id)
+# FavoriteBar.create(user_id: dan.id, bar_id: tavernreade.id)
+# FavoriteBar.create(user_id: diana.id, bar_id: jeremy.id)
+# FavoriteBar.create(user_id: sophia.id, bar_id: rabbit.id)
 
 
 # puts "🌱 Seeding bar_crawls..."
