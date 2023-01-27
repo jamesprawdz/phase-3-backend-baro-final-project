@@ -58,11 +58,12 @@ class ApplicationController < Sinatra::Base
     bar_crawl.to_json(only: [:bar_crawl_name], include: {user: {only: [:display_name]}})
   end
 
-  post '/crawl_list' do 
-    bar_crawl_bar = BarCrawlBar.create(bar_id:params[:bar_id], bar_crawl_id:params[:bar_crawl_id])
-    bar_crawl_bar.to_json
+  # post to create a bar crawl
+  post '/crawl_list' do
+    bar_crawl = BarCrawl.create(bar_crawl_name:params[:bar_crawl_name], bar_crawl_bars:params[:bar_crawl_bars], user_id:params[:user_id])
+    bar_crawl.to_json
   end
-
+  
 get '/users' do 
     user = User.all
     user.to_json
